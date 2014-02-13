@@ -1,0 +1,25 @@
+{
+  "name": "plumber-livereload",
+  "version": "0.2.0",
+  "description": "Live reload operation for Plumber pipelines",
+  "main": "index",
+  "dependencies": {
+    "tiny-lr": "0.0.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/plumberjs/plumber-livereload.git"
+  },
+  "keywords": [
+    "build",
+    "assets",
+    "pipeline",
+    "plumber",
+    "livereload"
+  ],
+  "author": "Sébastien Cevey <seb@cine7.net>",
+  "license": "GPL",
+  "bugs": {
+    "url": "https://github.com/plumberjs/plumber-livereload/issues"
+  }
+}
