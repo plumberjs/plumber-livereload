@@ -28,7 +28,7 @@ module.exports = function() {
                 // FIXME: Add API for detecting source map reports.
                 return ! report.path.filename().match(/\.map$/);
             }).map(function(report) {
-                return report.writtenResource.absolute();
+                return report.path.absolute();
             });
             console.log('Live reloading ' + files.length + ' files...');
             server.changed({body: {files: files}});
