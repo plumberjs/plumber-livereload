@@ -1,6 +1,6 @@
 {
   "name": "plumber-livereload",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Live reload operation for Plumber pipelines",
   "main": "index",
   "dependencies": {
