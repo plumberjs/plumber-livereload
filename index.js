@@ -23,7 +23,7 @@ module.exports = function() {
         // FIXME: filter reports only
         if (reports.length > 1) {
             var files = reports.map(function(report) {
-                return report.writtenResource.absolute();
+                return report.path.absolute();
             });
             console.log('Live reloading ' + files.length + ' files...');
             server.changed({body: {files: files}});
