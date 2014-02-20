@@ -27,6 +27,9 @@ module.exports = function() {
         // FIXME: filter reports only
         if (reports.length > 1) {
             var files = reports.filter(function (report) {
+                // Filter out source maps — LiveReload will refresh the whole
+                // page when it detects a non-CSS file.
+                // FIXME: Add API for detecting source map reports.
                 return ! report.path.filename().match(/\.map$/);
             }).map(function(report) {
                 return report.path.absolute();
