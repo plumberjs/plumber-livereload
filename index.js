@@ -1,3 +1,6 @@
+var operation = require('plumber').operation;
+var Report = require('plumber').Report;
+
 var tinylr = require('tiny-lr');
 
 // TODO: take options (port, ssl)
@@ -6,7 +9,7 @@ module.exports = function() {
     var port = 35729;
     var server;
 
-    return function(reports) {
+    return operation(function(reports) {
         if (! server) {
             server = tinylr({port: port});
             server.server.removeAllListeners('error');
@@ -24,9 +27,12 @@ module.exports = function() {
             });
         }
 
+        return reports.collect().map(function(reports) {
+            var r = reports.filter(Report.isReport);
+
         // FIXME: filter reports only
-        if (reports.length > 1) {
-            var files = reports.filter(function (report) {
+        if (r.length > 1) {
+            var files = r.filter(function (report) {
                 // Filter out source maps — LiveReload will refresh the whole
                 // page when it detects a non-CSS file.
                 // FIXME: Add API for detecting source map reports.
@@ -34,11 +40,14 @@ module.exports = function() {
             }).map(function(report) {
                 return report.path.absolute();
             });
+            // TODO: append as report
             console.log('Live reloading ' + files.length + ' files...');
             server.changed({body: {files: files}});
         }
 
         // TODO: return reload report? avoid output?
-        return [];
-    };
+        return reports;
+
+        });
+    });
 };
