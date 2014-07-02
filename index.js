@@ -30,23 +30,23 @@ module.exports = function() {
         return reports.collect().map(function(reports) {
             var r = reports.filter(Report.isReport);
 
-        // FIXME: filter reports only
-        if (r.length > 1) {
-            var files = r.filter(function (report) {
-                // Filter out source maps — LiveReload will refresh the whole
-                // page when it detects a non-CSS file.
-                // FIXME: Add API for detecting source map reports.
-                return ! report.path.filename().match(/\.map$/);
-            }).map(function(report) {
-                return report.path.absolute();
-            });
-            // TODO: append as report
-            console.log('Live reloading ' + files.length + ' files...');
-            server.changed({body: {files: files}});
-        }
+            // FIXME: filter reports only
+            if (r.length > 1) {
+                var files = r.filter(function (report) {
+                    // Filter out source maps — LiveReload will refresh the whole
+                    // page when it detects a non-CSS file.
+                    // FIXME: Add API for detecting source map reports.
+                    return ! report.path.filename().match(/\.map$/);
+                }).map(function(report) {
+                    return report.path.absolute();
+                });
+                // TODO: append as report
+                console.log('Live reloading ' + files.length + ' files...');
+                server.changed({body: {files: files}});
+            }
 
-        // TODO: return reload report? avoid output?
-        return reports;
+            // TODO: return reload report? avoid output?
+            return reports;
 
         });
     });
