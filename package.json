@@ -4,8 +4,10 @@
   "description": "Live reload operation for Plumber pipelines",
   "main": "index",
   "dependencies": {
-    "plumber": "~0.3.0",
     "tiny-lr": "0.0.5"
+  },
+  "peerDependencies": {
+    "plumber": "~0.4.0"
   },
   "repository": {
     "type": "git",

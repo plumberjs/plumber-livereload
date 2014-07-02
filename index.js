@@ -27,7 +27,7 @@ module.exports = function() {
             });
         }
 
-        return reports.collect().map(function(reports) {
+        return reports.toArray().map(function(reports) {
             var r = reports.filter(Report.isReport);
 
             // FIXME: filter reports only
